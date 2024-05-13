@@ -18,11 +18,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-btn @click="this.splitMetadata()">Estrai</v-btn>
-      </v-col>
+    
       <v-col>
         <v-card>
           <v-card-title class="mb-2">
@@ -82,19 +78,17 @@ export default {
       const subscription = nowPlaying.subscribe(({ title, error }) => {
         if (!error) {
           this.metadata = title
+          const parti = this.metadata.split('~');
+          this.meta.titolo = parti[0];
+          this.meta.artista = parti[1];
+          this.meta.x = parti[2];
+          this.meta.anno = parti[3];
+          this.meta.radio = parti[8];
         }
       })
       nowPlaying.trackStream('http://icy.unitedradio.it/105Dance90.mp3')
     },
-    splitMetadata() {
-      const parti = this.metadata.split('~');
-      this.meta.titolo = parti[0];
-      this.meta.artista = parti[1];
-      this.meta.x = parti[2];
-      this.meta.anno = parti[3];
-      this.meta.radio = parti[8];
-      console.log(parti); 
-    }
+    
   },
   created() {
     this.fetchMetadata();
