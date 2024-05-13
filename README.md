@@ -1,7 +1,3 @@
-# starter
-
-https://fakestoreapi.com/docs
-
 ## Project setup
 ```
 npm install
